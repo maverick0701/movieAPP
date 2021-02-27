@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import movies from './reducers'
 import App from './components/App';
 
+const store=createStore(movies);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App store={store}/>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+// store.dispatch({
+//   type:'ADD_MOVIES',
+//   movies:[{name:'SuperMan'}]
+// })
+// console.log(store.getState())
+// console.log(store.getState());
+
+
