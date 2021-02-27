@@ -3,6 +3,7 @@ import '../App.css';
 import {data} from '../data';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
+import {addMovies} from '../actions/index'
 class App extends React.Component {
   componentDidMount()
   {
@@ -12,16 +13,13 @@ class App extends React.Component {
     {
       this.forceUpdate();
     })
-    store.dispatch({
-      type:'ADD_MOVIES',
-      movies:data
-    });
+    store.dispatch(addMovies(data));
    
   
   }
   
    render(){
-    const movies=this.props.store.getState();
+    const {list}=this.props.store.getState();
    
   return (
     <div className="App">
@@ -32,7 +30,7 @@ class App extends React.Component {
           <div className='tab'>Favourites</div>
         </div>
         <div className='list'>
-          {movies.map((movie,index)=>(
+          {list.map((movie,index)=>(
             <MovieCard movie={movie} key={`movies-${index}`}/>
           ))}
         </div>

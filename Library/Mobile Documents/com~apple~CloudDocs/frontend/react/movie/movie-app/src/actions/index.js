@@ -1,3 +1,8 @@
+export const ADD_MOVIES='ADD_MOVIES';//action types
+export function addMovies(movies)//action creators
 {
-    type:'increase';
+    return {
+        type:ADD_MOVIES,
+        movies
+    }
 }
