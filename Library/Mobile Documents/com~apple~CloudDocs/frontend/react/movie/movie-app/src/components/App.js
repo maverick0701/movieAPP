@@ -7,21 +7,18 @@ import {addMovies,setShowFavourites} from '../actions/index'
 class App extends React.Component {
   componentDidMount()
   {
-   
     const {store}=this.props;
     store.subscribe(()=>
     {
-      this.forceUpdate();
+    this.forceUpdate();
     })
-    store.dispatch(addMovies(data));
-    console.log('update',this.props.store.getState());
-  
+store.dispatch(addMovies(data));   
   }
   isFavourite=(movie)=>
   {
     const {store}=this.props;
-    const {favourites}=store.getState();
-    var index=favourites.indexOf(movie);
+    const {movies}=store.getState();
+    var index=movies.favourites.indexOf(movie);
     
     if(index!==-1)
     {
@@ -35,7 +32,8 @@ class App extends React.Component {
     this.props.store.dispatch(setShowFavourites(val));
   }
    render(){
-    const {list,showFavourites,favourites}=this.props.store.getState();
+    const {movies}=this.props.store.getState();
+    const {list,showFavourites,favourites}=movies;
     const displayMovie=showFavourites?favourites:list;
   
   return (
