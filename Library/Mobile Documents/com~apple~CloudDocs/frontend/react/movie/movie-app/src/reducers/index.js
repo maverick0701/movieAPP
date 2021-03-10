@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {ADD_MOVIES,REM_FAVOURITE,SET_SHOW_FAVOURITES,ADD_SEARCH_RESULT} from '../actions/index';
+import {ADD_MOVIES,REM_FAVOURITE,SET_SHOW_FAVOURITES,ADD_SEARCH_RESULT,ADD_MOVIE} from '../actions/index';
 import {ADD_FAVOURITE} from '../actions/index';
 
 const initialMovieState={
@@ -51,7 +51,11 @@ export  function movies(state=initialMovieState,action)
                 ...state,
                 showFavourites:action.val
             }
-
+        case ADD_MOVIE:
+            return{
+                ...state,
+                list:[action.movie,...state.list]
+            }
         default:
             return state;
     }

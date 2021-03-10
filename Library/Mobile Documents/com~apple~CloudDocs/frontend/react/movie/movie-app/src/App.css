@@ -183,3 +183,27 @@ body {
   font-size: 20px;
   color: #6d6d6d;
 }
+#searchRes{
+position: absolute;
+width: 400px;
+height: 150px;
+top: 38px;
+z-index: 1;
+}
+
+#sImg
+{
+  height: 150px;
+}
+#addBtn
+{
+  font-size: 15px;
+  padding: 7px 10px;
+  text-shadow: none;
+  border-radius: 3px;
+  border: none;
+  font-weight: 600;
+  position: relative;
+  left: 63%;
+  top: 24%;
+}

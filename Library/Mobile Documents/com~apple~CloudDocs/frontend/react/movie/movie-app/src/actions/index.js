@@ -1,4 +1,5 @@
 export const ADD_MOVIES='ADD_MOVIES';//action types
+export const ADD_MOVIE='ADD_MOVIE';
 export const ADD_FAVOURITE='ADD_FAVOURITE';
 export const REM_FAVOURITE='REM_FAVOURITE';
 export const  SET_SHOW_FAVOURITES='SET_SHOW_FAVOURITES';
@@ -36,6 +37,14 @@ export function setShowFavourites(val)
         val
     }
 }
+export function handleAddMovie(movie)
+{
+    console.log('handle movie called')
+    return{
+        type:ADD_MOVIE,
+        movie
+    }
+}
 export function handleSearchResult(movie)
 {
     return {
@@ -43,10 +52,12 @@ export function handleSearchResult(movie)
         movie
     }
 }
+
 export function handleMovieSearch(movie)
 {
+   
     return function (dispatch){
-    const url=`http://www.omdbapi.com/?apiKey=35ac5a60&t=${movie}`;
+    const url=`http://www.omdbapi.com/?i=tt3896198&apikey=b2f9e2bb&t=${movie}`;
     fetch(url)
     .then(response=>response.json())
     .then(movie=>{
