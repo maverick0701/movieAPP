@@ -3,7 +3,8 @@ import '../App.css';
 import {data} from '../data';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
-import {addMovies,setShowFavourites} from '../actions/index'
+import {addMovies,setShowFavourites} from '../actions/index';
+import {StoreContext} from '../index';
 class App extends React.Component {
   componentDidMount()
   {
@@ -12,7 +13,7 @@ class App extends React.Component {
     {
     this.forceUpdate();
     })
-store.dispatch(addMovies(data));   
+     store.dispatch(addMovies(data));   
   }
   isFavourite=(movie)=>
   {
@@ -60,5 +61,24 @@ store.dispatch(addMovies(data));
     </div>
   );}
 }
+// class AppWrapper extends React.Component{
+//   render() {
+//     return (
+//       <StoreContext.Consumer>
+//         {(store)=><App store={store}/>};
+//       </StoreContext.Consumer>
+//     );
+//   }
+// }
 
-export default App;
+class AppWrapper extends React.Component {
+  render() {
+    return (
+      <StoreContext.Consumer>
+        {(store) => <App store={store} />}
+      </StoreContext.Consumer>
+    );
+  }
+}
+
+export default AppWrapper;

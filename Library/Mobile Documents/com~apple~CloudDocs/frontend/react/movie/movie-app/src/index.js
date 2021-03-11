@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{createContext} from 'react';
 import ReactDOM from 'react-dom';
 import { createStore,applyMiddleware } from 'redux';
 import combineReducers from './reducers';
@@ -19,8 +19,20 @@ const thunk=({dispatch,getState})=>(next)=>(action)=>{
 
 const store=createStore(combineReducers,applyMiddleware(logger,thunk));
 
+export const StoreContext=createContext();
+
+class Provider extends React.Component{
+  render()
+  {
+    const {store}=this.props;
+    return <StoreContext.Provider value={store}>{this.props.children}</StoreContext.Provider>;
+  }
+}
+
 ReactDOM.render(
-    <App store={store}/>,
+    <Provider store={store}>
+    <App/>
+    </Provider>,
   document.getElementById('root')
 );
 
